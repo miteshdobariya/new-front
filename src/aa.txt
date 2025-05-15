@@ -1,0 +1,20 @@
+   {colors.length > 0 ? (
+                                            colors.map((color) => (
+                                                <button
+                                                    key={color}
+                                                    className={`color-btn ${selectedColor === color ? "selected" : ""}`}
+                                                    onClick={() => handleColorChange(color)}
+                                                    style={{
+                                                        backgroundColor: color.toLowerCase(),
+                                                        border: selectedColor === color ? "2px solid black" : "1px solid #ccc",
+                                                        borderRadius: "50%",
+                                                        width: "20px",
+                                                        height: "20px",
+                                                        margin: "5px",
+                                                        cursor: "pointer",
+                                                    }}
+                                                ></button>
+                                            ))
+                                        ) : (
+                                            <span>No color variations available</span>
+                                        )}
