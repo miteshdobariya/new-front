@@ -581,7 +581,7 @@ export default function Header() {
             <div className="title">
               <h2>THE CLUB OF WHITE</h2>
             </div>
-            {localStorage.getItem("email") === "miteshdobariya2206@.com" && (
+            {localStorage.getItem("email") === "miteshdobariya2206@gmail.com" && (
               <button className="admin-btn" onClick={addproduct}>
                 Admin
               </button>
