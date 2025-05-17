@@ -4051,12 +4051,15 @@ input[type="button"]:hover {
     .address-form input {
       padding: 6px;
       font-size: 14px;
-      width: 92%;
+      width: 82%;
     }
     .address-form button,
     .right-section button {
       padding: 8px;
       font-size: 14px;
+    }
+    .section1{
+      margin-bottom: 20px;
     }
   }
   

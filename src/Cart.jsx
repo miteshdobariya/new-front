@@ -770,7 +770,7 @@ const Cart = () => {
 
                             {/* Address Section */}
                             <div className="section">
-                                <h3>Shipping Address</h3>
+                                <h3 className='section1'>Shipping Address</h3>
                                 <form className="address-form">
                                     <input type="text" placeholder="Full Name" value={fullname} onChange={(e) => setFullname(e.target.value)} />
                                     <input type="text" placeholder="Address" value={address} onChange={(e) => setAddress(e.target.value)} />
@@ -792,7 +792,7 @@ const Cart = () => {
                                     <label><input type="radio" name="payment" value="cod" ref={payment1} /> Cash on Delivery</label>
                                     <label><input type="radio" name="payment" value="online" /> Online Payment</label>
                                 </div>
-                                <input type="text" placeholder="Enter Amount" ref={name} className="amount-input" />
+                                {/* <input type="text" placeholder="Enter Amount" ref={name} className="amount-input" /> */}
                             </div>
 
                             {/* Order Summary */}
@@ -802,7 +802,7 @@ const Cart = () => {
                                 {/* Product List */}
                                 {data.map((item, idx) => (
                                     <div key={idx} className="order-item">
-                                        <img src={`${process.env.REACT_APP_API}/images/${item.img}`} alt={item.name} className="item-image" />
+                                        <img /*src={`${process.env.REACT_APP_API}/images/${item.img}`}*/ src={item.img} alt={item.name} className="item-image" />
                                         <div className="item-details">
                                             <div className="item-name">{item.name}</div>
                                             <div className="item-variant">{item.color} / {item.size}</div>
