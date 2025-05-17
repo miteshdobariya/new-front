@@ -70,7 +70,7 @@ const AllCategory = () => {
               <td>{category.name}</td>
               <td>
                 <img
-                  src={`${process.env.REACT_APP_API}/images/${category.img}`}
+                 /* src={`${process.env.REACT_APP_API}/images/${category.img}`}*/ src={category.img}
                   alt={category.name}
                   style={{ width: "50px", height: "50px", objectFit: "cover" }}
                 />

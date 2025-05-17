@@ -66,7 +66,7 @@ const Adminallorder = () => {
             <tbody>
               {order.items.map((item, idx) => (
                 <tr key={idx}>
-                  <td><img src={`${process.env.REACT_APP_API}/images/${item.img}`} alt={item.name} className="item-image" onClick={() => setZoomImg(`${process.env.REACT_APP_API}/images/${item.img}`)} style={{ cursor: "pointer" }} /></td>
+                  <td><img /*src={`${process.env.REACT_APP_API}/images/${item.img}`}*/ src={item.img} alt={item.name} className="item-image" onClick={() => setZoomImg(`${process.env.REACT_APP_API}/images/${item.img}`)} style={{ cursor: "pointer" }} /></td>
                   <td>{item.name}</td>
                   <td>{item.size}</td>
                   <td>₹{item.price}</td>

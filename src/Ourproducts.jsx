@@ -71,7 +71,7 @@ const Ourproducts = () => {
                         {data.map((i, index) => (
                                 <div className="cln" key={i._id} onClick={register}  data-id={i._id}>
                                     <div className="product-img">
-                                        <img src={`${process.env.REACT_APP_API}/images/${i.img}`} alt="products" />
+                                        <img /*src={`${process.env.REACT_APP_API}/images/${i.img}`} */ src={i.img} alt="products" />
                                         <div className="heart" onClick={() => toggleLike(index)}>
                                             {likedItems.includes(index) ? (
                                                 <FaHeart color="#C2A67D" size={22} />

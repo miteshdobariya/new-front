@@ -92,7 +92,7 @@ const AllProducts = () => {
               <td>
                 {prod.img && (
                   <img
-                    src={`${process.env.REACT_APP_API}/images/${prod.img}`}
+                    /*src={`${process.env.REACT_APP_API}/images/${prod.img}`}*/ src={prod.img}
                     alt={prod.name}
                     style={{ width: "50px", height: "50px", objectFit: "cover" }}
                   />

@@ -166,7 +166,7 @@ const Product_inner = () => {
                     <div className="aaiinner">
                         <div className="items aai">
                             <div className="item_img">
-                                <img src={`${process.env.REACT_APP_API}/images/${mainImage}`} alt="Product" onClick={() => setMainImage(originalImage)}
+                                <img /*src={`${process.env.REACT_APP_API}/images/${mainImage}`}*/ src={mainImage} alt="Product" onClick={() => setMainImage(originalImage)}
                                     style={{ cursor: mainImage !== originalImage ? "pointer" : "default" }} />
                                 <Swiper
                                     modules={[Autoplay, Navigation]}
@@ -176,11 +176,11 @@ const Product_inner = () => {
                                     spaceBetween={10}
                                     className='custom_swiper'
                                 >
-                                    <SwiperSlide><li><img src={`${process.env.REACT_APP_API}/images/${data1.subimg1}`} alt="Related Product 1" onClick={() => setMainImage(data1.subimg1)}
+                                    <SwiperSlide><li><img /*src={`${process.env.REACT_APP_API}/images/${data1.subimg1}`}*/ src={data1.subimg1} alt="Related Product 1" onClick={() => setMainImage(data1.subimg1)}
                                         style={{ cursor: "pointer" }} /></li></SwiperSlide>
-                                    <SwiperSlide><li><img src={`${process.env.REACT_APP_API}/images/${data1.subimg2}`} alt="Related Product 2" onClick={() => setMainImage(data1.subimg2)}
+                                    <SwiperSlide><li><img /*src={`${process.env.REACT_APP_API}/images/${data1.subimg2}`}*/src={data1.subimg2} alt="Related Product 2" onClick={() => setMainImage(data1.subimg2)}
                                         style={{ cursor: "pointer" }} /></li></SwiperSlide>
-                                    <SwiperSlide><li><img src={`${process.env.REACT_APP_API}/images/${data1.subimg3}`} alt="Related Product 3" onClick={() => setMainImage(data1.subimg3)}
+                                    <SwiperSlide><li><img /*src={`${process.env.REACT_APP_API}/images/${data1.subimg3}`}*/src={data1.subimg3} alt="Related Product 3" onClick={() => setMainImage(data1.subimg3)}
                                         style={{ cursor: "pointer" }} /></li></SwiperSlide>
                                 </Swiper>
                             </div>

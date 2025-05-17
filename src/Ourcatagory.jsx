@@ -119,7 +119,7 @@ const [data1, setdata1] = useState([])
                                         <>
                                             <div className="cln">
                                                 <div className="cat-img" onClick={looknow} cat-name={i.name}>
-                                                    <img src={`${process.env.REACT_APP_API}/images/${i.img}`}  alt="category" />
+                                                    <img /*src={`${process.env.REACT_APP_API}/images/${i.img}`}*/ src={i.img}  alt="category" />
                                                 </div>
                                                 <div className="cat-detail">
                                                     <div className="name">
@@ -175,7 +175,7 @@ const [data1, setdata1] = useState([])
 
                                         <div className="cat-cln">
                                             <div className="cat-img">
-                                                <img src={`${process.env.REACT_APP_API}/images/${item.img}`} alt={item.name} />
+                                                <img /*src={`${process.env.REACT_APP_API}/images/${item.img}`}*/ src={item.img} alt={item.name} />
                                                 <div className="heart" onClick={() => toggleLike(index)}>
                                                     <FaHeart color={likedItems.includes(index) ? "red" : "gray"} />
                                                 </div>
@@ -236,7 +236,7 @@ const [data1, setdata1] = useState([])
                                     <SwiperSlide key={index}>
                                         <div className="cat-cln">
                                             <div className="cat-img">
-                                                <img src={`${process.env.REACT_APP_API}/images/${item.img}`} alt={item.name} />
+                                                <img /*src={`${process.env.REACT_APP_API}/images/${item.img}`}*/ src={item.img} alt={item.name} />
                                                 <div className="heart" onClick={() => toggleLike(index)}>
                                                     <FaHeart color={likedItems.includes(index) ? "red" : "gray"} />
                                                 </div>

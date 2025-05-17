@@ -174,7 +174,7 @@ export default function TrendingLooks() {
         >
           {products.slice(0,15).map((prod) => (
             <SwiperSlide key={prod.id}>
-              <img src={`${process.env.REACT_APP_API}/images/${prod.img}`} alt={prod.title} />
+              <img /*src={`${process.env.REACT_APP_API}/images/${prod.img}`}*/ src={prod.img} alt={prod.title} />
               <button className="view-more" data-id={prod._id} onClick={product}>View More</button>
             </SwiperSlide>
           ))}

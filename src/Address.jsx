@@ -242,7 +242,7 @@ const Address = () => {
           <h2>Order Summary</h2>
           {cart.map((item) => (
             <div key={item._id} className="summary-item">
-              <img src={`${process.env.REACT_APP_API}/images/${item.img}`} alt={item.name} />
+              <img /*src={`${process.env.REACT_APP_API}/images/${item.img}`}*/ src={item.img} alt={item.name} />
               <div>
                 <p>{item.name} × {item.qty}</p>
                 <span>₹{item.price * item.qty}</span>

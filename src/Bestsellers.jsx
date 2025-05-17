@@ -104,7 +104,7 @@ const Bestsellers = () => {
                                             <SwiperSlide>
                                                 <div className="seller-cln" onClick={register}  data-id={i._id}>
                                                     <div className="seller-img">
-                                                        <img src={`${process.env.REACT_APP_API}/images/${i.img}`} alt="Category 1" />
+                                                        <img /*src={`${process.env.REACT_APP_API}/images/${i.img}`}*/ src={i.img} alt="Category 1" />
                                                     </div>
                                                     <div className="seller-detail">
                                                         <div className="name">

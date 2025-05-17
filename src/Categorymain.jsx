@@ -104,7 +104,7 @@ const seeall = () =>{
                                 <>
                                     <SwiperSlide>
                             <div className="cat-img" onClick={looknow} cat-name={i.name}>
-                                <img src={`${process.env.REACT_APP_API}/images/${i.img}`}  alt="Category 1" />
+                                <img /*src={`${process.env.REACT_APP_API}/images/${i.img}`}*/ src={i.img}  alt="Category 1" />
                                 <div className="cat-name">
                                     <h4>{i.name}</h4>
                                 </div>

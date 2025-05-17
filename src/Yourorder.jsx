@@ -68,7 +68,7 @@ const Yourorder = () => {
                                         <div key={idx} className="order-row">
                                             <div className="product-detail">
                                                 <div className="image">
-                                                    <img src={`${process.env.REACT_APP_API}/images/${item.img}`} alt="Product" />
+                                                    <img /*src={`${process.env.REACT_APP_API}/images/${item.img}`}*/ src={item.img} alt="Product" />
                                                 </div>
                                                 <div className="name">
                                                     <h3>{item.name}</h3>

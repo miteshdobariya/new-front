@@ -607,7 +607,7 @@ const Cart = () => {
                                 {data.map((item) => (
                                     <div key={item.productid} className="cart-item">
                                         <img
-                                            src={`${process.env.REACT_APP_API}/images/${item.img}`}
+                                           /* src={`${process.env.REACT_APP_API}/images/${item.img}`}*/ src={item.img}
                                             alt={item.name}
                                             className="cart-item-image"
                                         />

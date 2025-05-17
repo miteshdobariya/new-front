@@ -72,7 +72,7 @@ const Productinsert = () => {
     fetchProductDetails(productName); // Fetch and auto-fill product details
   };
 
-  // Submit the form
+
   const register = async (e) => {
     e.preventDefault();
     const params = new FormData();
@@ -108,6 +108,60 @@ const Productinsert = () => {
       toast.error("Failed to insert/update product.");
     }
   };
+
+
+
+
+
+
+// const uploadToCloudinary = async (file) => {
+//   const formData = new FormData();
+//   formData.append("file", file);
+//   formData.append("upload_preset", "mitesh"); // ✅ Your actual preset
+
+//   const res = await axios.post(
+//     "https://api.cloudinary.com/v1_1/dp4wlbryu/image/upload", // ✅ Your actual cloud name
+//     formData
+//   );
+//   return res.data.secure_url;
+// };
+
+
+// const register = async (e) => {
+//   e.preventDefault();
+//   try {
+//     const imgMainUrl = img.current.files[0] && await uploadToCloudinary(img.current.files[0]);
+//     const subImg1Url = subimg1.current.files[0] && await uploadToCloudinary(subimg1.current.files[0]);
+//     const subImg2Url = subimg2.current.files[0] && await uploadToCloudinary(subimg2.current.files[0]);
+//     const subImg3Url = subimg3.current.files[0] && await uploadToCloudinary(subimg3.current.files[0]);
+
+//     const payload = {
+//       name: name.current.value,
+//       price: price.current.value,
+//       detail: detail.current.value,
+//       brand: brand.current.value,
+//       discount: discount.current.value,
+//       color: color.current.value,
+//       isnew: document.querySelector('input[name="isNew"]:checked')?.value || "no",
+//       productsize: Array.from(document.querySelectorAll('input[name="productsize"]:checked')).map(i => i.value),
+//       img: imgMainUrl,
+//       subimg1: subImg1Url,
+//       subimg2: subImg2Url,
+//       subimg3: subImg3Url,
+//     };
+
+//     await axios.post(`${process.env.REACT_APP_API}/productinsert`, payload);
+//     toast.success("Product successfully inserted!");
+//   } catch (err) {
+//     toast.error("Error during product insertion");
+//     console.error(err);
+//   }
+// };
+
+
+
+
+
 
   return (
     <>
