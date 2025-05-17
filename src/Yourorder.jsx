@@ -22,7 +22,7 @@ const Yourorder = () => {
                 return;
             }
             try {
-                const res = await axios.get(`${process.env.REACT_APP_API}user-orders/${email}`);
+                const res = await axios.get(`${process.env.REACT_APP_API}/user-orders/${email}`);
                 setOrders(res.data);
             } catch (err) {
                 console.error('Failed to fetch orders', err);
