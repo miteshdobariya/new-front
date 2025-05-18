@@ -14,7 +14,7 @@ const Bestsellers = () => {
     const register = (e) => {
         e.preventDefault();
         var id = e.currentTarget.getAttribute("data-id");
-        alert(id);
+        // alert(id);
         navigate("/productinner/" + id);
     }
 

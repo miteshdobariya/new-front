@@ -296,7 +296,7 @@ const Cart = () => {
     const [step, setStep] = useState(1); // 1 = Address, 2 = Payment
 
 
- useEffect(() => {
+    useEffect(() => {
         if (showModal) {
             document.body.style.overflow = 'hidden';
         } else {
@@ -309,8 +309,9 @@ const Cart = () => {
 
 
 
-    const payment = async (e) => {
-        e.preventDefault();
+    const payment = async () => {
+        // e.preventDefault();
+        console.log("Payment started");
         const selectedPayment = document.querySelector('input[name="payment"]:checked')?.value;
         var email = localStorage.getItem("email");
         if (!selectedPayment) {
@@ -375,7 +376,7 @@ const Cart = () => {
 
                     const options = {
                         key: "rzp_test_II6PHCN89mTaTQ",
-                        amount: total* 100,
+                        amount: total * 100,
                         currency: "INR",
                         order_id: response.data.orderid,
                         handler: async function () {
@@ -540,39 +541,77 @@ const Cart = () => {
         navigate('/ourcatagory');
     };
 
-    const addressform = async (e) => {
-        e.preventDefault();
-        if (!fullname || !address || !city || !state || !pincode || !mobile) {
-            toast.warn("Please fill in all fields");
-            return;
-        }
+    // const addressform = async () => {
+    //     // e.preventDefault();
+    //     if (!fullname || !address || !city || !state || !pincode || !mobile) {
+    //         toast.warn("Please fill in all fields");
+    //         return;
+    //     }
 
-        const email = localStorage.getItem("email");
-        const addressobj = {
-            fullname,
-            address,
-            city,
-            state,
-            pincode,
-            mobile,
-            email,
-        };
+    //     const email = localStorage.getItem("email");
+    //     const addressobj = {
+    //         fullname,
+    //         address,
+    //         city,
+    //         state,
+    //         pincode,
+    //         mobile,
+    //         email,
+    //     };
 
-        try {
-            const response = await axios.post(`${process.env.REACT_APP_API}/saveAddress`, addressobj);
-            console.log("Address Save Response:", response.data); // ✅ Debug line
+    //     try {
+    //         const response = await axios.post(`${process.env.REACT_APP_API}/saveAddress`, addressobj);
+    //         console.log("Address Save Response:", response.data); // ✅ Debug line
 
-            if (response.data.status === "success") {
-                toast.success("Address saved successfully");
-                setStep(2);
-            } else {
-                toast.error("Address save failed: " + response.data.message);
-            }
-        } catch (error) {
-            console.error("Error saving address:", error); // ✅ Debug line
-            toast.error("Something went wrong while saving address.");
-        }
-    };
+    //         if (response.data.status === "success") {
+    //             toast.success("Address saved successfully");
+    //             setStep(2);
+    //         } else {
+    //             toast.error("Address save failed: " + response.data.message);
+    //         }
+    //     } catch (error) {
+    //         console.error("Error saving address:", error); // ✅ Debug line
+    //         toast.error("Something went wrong while saving address.");
+    //     }
+    // };
+
+
+const addressform = async () => {
+  if (!fullname || !address || !city || !state || !pincode || !mobile) {
+    toast.warn("Please fill in all fields");
+    return false;  // return false if validation fails
+  }
+
+  const email = localStorage.getItem("email");
+  const addressobj = {
+    fullname,
+    address,
+    city,
+    state,
+    pincode,
+    mobile,
+    email,
+  };
+
+  try {
+    const response = await axios.post(`${process.env.REACT_APP_API}/saveAddress`, addressobj);
+    console.log("Address Save Response:", response.data);
+
+    if (response.data.status === "success") {
+      toast.success("Address saved successfully");
+      setStep(2);
+      return true;  // Return true on success
+    } else {
+      toast.error("Address save failed: " + response.data.message);
+      return false;
+    }
+  } catch (error) {
+    console.error("Error saving address:", error);
+    toast.error("Something went wrong while saving address.");
+    return false;
+  }
+};
+
 
 
     return (
@@ -659,97 +698,10 @@ const Cart = () => {
             </div>
 
 
-            {/* {showModal && (
-                <div className="modal-overlay">
-                    <div className="modal">
-                        <div className="step-indicator">
-                            <span className={step === 1 ? "active-step" : ""}>Step 1: Shipping Address</span>
-                            <span className="separator">→</span>
-                            <span className={step === 2 ? "active-step" : ""}>Step 2: Payment</span>
-                        </div>
-                        {step === 1 && (
-                            <form onSubmit={addressform}>
-                                <h2>Enter Shipping Details</h2>
-                                <input
-                                    type="text"
-                                    placeholder="Full Name"
-                                    value={fullname}
-                                    onChange={(e) => setFullname(e.target.value)}
-                                />
-                                <input
-                                    type="text"
-                                    placeholder="Address"
-                                    value={address}
-                                    onChange={(e) => setAddress(e.target.value)}
-                                />
-                                <input
-                                    type="text"
-                                    placeholder="City"
-                                    value={city}
-                                    onChange={(e) => setCity(e.target.value)}
-                                />
-                                <input
-                                    type="text"
-                                    placeholder="State"
-                                    value={state}
-                                    onChange={(e) => setState(e.target.value)}
-                                />
-                                <input
-                                    type="text"
-                                    placeholder="Pincode"
-                                    value={pincode}
-                                    onChange={(e) => setPincode(e.target.value)}
-                                />
-                                <input
-                                    type="text"
-                                    placeholder="Mobile Number"
-                                    value={mobile}
-                                    onChange={(e) => setMobile(e.target.value)}
-                                />
-
-                                <button
-                                    onClick={() => {
-                                        if (!fullname || !address || !city || !state || !pincode || !mobile) {
-                                            toast.warn("Please fill in all fields");
-                                            return;
-                                        }
-                                        // setStep(2);
-                                    }}
-                                >
-                                    Continue to Payment
-                                </button>
-                                <button onClick={() => setShowModal(false)}>Close</button>
-                            </form>
-                        )}
-
-                        {step === 2 && (
-                            <>
-                                <h2>Select Payment Method</h2>
-                                <form onSubmit={payment}>
-                                    <div className='payment'>
-                                        <input type='radio' name='payment' value='cod' ref={payment1} /> Cash on Delivery
-                                    </div>
-                                    <div className='payment'>
-                                        <input type='radio' name='payment' value='online' /> Online Payment
-                                    </div>
-                                    <input
-                                        type="text"
-                                        placeholder="Enter Amount"
-                                        ref={name}
-                                    />
-                                    <button type="submit">Place Order</button>
-                                </form>
-
-                                <button onClick={() => setStep(1)}>Back</button>
-                                <button onClick={() => setShowModal(false)}>Close</button>
-                            </>
-                        )}
-                    </div>
-                </div>
-            )} */}
-
-
             
+
+
+
             {showModal && (
                 <div className="modal-overlay">
                     <div className="modal combined-modal">
@@ -827,7 +779,15 @@ const Cart = () => {
 
                         {/* Buttons */}
                         <div className="modal-buttons">
-                            <button onClick={payment} className="place-order-button">Place Order</button>
+                            <button
+                                onClick={async () => {
+                                    const addressSaved = await addressform();
+                                    if (addressSaved) {
+                                       await payment();
+                                    }
+                                }}
+                                className="place-order-button"
+                            >Place Order</button>
                             <button onClick={() => setShowModal(false)} className="cancel-button">Cancel</button>
                         </div>
                     </div>

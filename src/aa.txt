@@ -1,20 +1,88 @@
-   {colors.length > 0 ? (
-                                            colors.map((color) => (
-                                                <button
-                                                    key={color}
-                                                    className={`color-btn ${selectedColor === color ? "selected" : ""}`}
-                                                    onClick={() => handleColorChange(color)}
-                                                    style={{
-                                                        backgroundColor: color.toLowerCase(),
-                                                        border: selectedColor === color ? "2px solid black" : "1px solid #ccc",
-                                                        borderRadius: "50%",
-                                                        width: "20px",
-                                                        height: "20px",
-                                                        margin: "5px",
-                                                        cursor: "pointer",
-                                                    }}
-                                                ></button>
-                                            ))
-                                        ) : (
-                                            <span>No color variations available</span>
-                                        )}
+{/* {showModal && (
+                <div className="modal-overlay">
+                    <div className="modal">
+                        <div className="step-indicator">
+                            <span className={step === 1 ? "active-step" : ""}>Step 1: Shipping Address</span>
+                            <span className="separator">→</span>
+                            <span className={step === 2 ? "active-step" : ""}>Step 2: Payment</span>
+                        </div>
+                        {step === 1 && (
+                            <form onSubmit={addressform}>
+                                <h2>Enter Shipping Details</h2>
+                                <input
+                                    type="text"
+                                    placeholder="Full Name"
+                                    value={fullname}
+                                    onChange={(e) => setFullname(e.target.value)}
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="Address"
+                                    value={address}
+                                    onChange={(e) => setAddress(e.target.value)}
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="City"
+                                    value={city}
+                                    onChange={(e) => setCity(e.target.value)}
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="State"
+                                    value={state}
+                                    onChange={(e) => setState(e.target.value)}
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="Pincode"
+                                    value={pincode}
+                                    onChange={(e) => setPincode(e.target.value)}
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="Mobile Number"
+                                    value={mobile}
+                                    onChange={(e) => setMobile(e.target.value)}
+                                />
+
+                                <button
+                                    onClick={() => {
+                                        if (!fullname || !address || !city || !state || !pincode || !mobile) {
+                                            toast.warn("Please fill in all fields");
+                                            return;
+                                        }
+                                        // setStep(2);
+                                    }}
+                                >
+                                    Continue to Payment
+                                </button>
+                                <button onClick={() => setShowModal(false)}>Close</button>
+                            </form>
+                        )}
+
+                        {step === 2 && (
+                            <>
+                                <h2>Select Payment Method</h2>
+                                <form onSubmit={payment}>
+                                    <div className='payment'>
+                                        <input type='radio' name='payment' value='cod' ref={payment1} /> Cash on Delivery
+                                    </div>
+                                    <div className='payment'>
+                                        <input type='radio' name='payment' value='online' /> Online Payment
+                                    </div>
+                                    <input
+                                        type="text"
+                                        placeholder="Enter Amount"
+                                        ref={name}
+                                    />
+                                    <button type="submit">Place Order</button>
+                                </form>
+
+                                <button onClick={() => setStep(1)}>Back</button>
+                                <button onClick={() => setShowModal(false)}>Close</button>
+                            </>
+                        )}
+                    </div>
+                </div>
+            )} */}
