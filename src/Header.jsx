@@ -464,10 +464,239 @@
 
 
 
+// "use client"
+
+// import { Search, ShoppingCart, Truck, Heart, User } from "lucide-react"
+// import { Link, useNavigate } from "react-router-dom"
+// import { useState, useContext, useRef, useEffect } from "react"
+// import logo from "./assets/Backgroungimg/logo1.png"
+// import { AuthContext } from "./AuthContext"
+// import { IoLogOut } from "react-icons/io5"
+// import axios from "axios"
+
+// export default function Header() {
+//   const [menuOpen, setMenuOpen] = useState(false)
+//   const [searchOpen, setSearchOpen] = useState(false)
+//   const [searchTerm, setSearchTerm] = useState("")
+//   const [suggestions, setSuggestions] = useState([])
+//   const { logout } = useContext(AuthContext)
+//   const navigate = useNavigate()
+//   const searchInputRef = useRef(null)
+
+//   const toggleMenu = () => {
+//     setMenuOpen(!menuOpen)
+//   }
+
+//   const toggleSearch = () => {
+//     setSearchOpen(!searchOpen)
+//     if (!searchOpen) {
+//       setTimeout(() => {
+//         searchInputRef.current?.focus()
+//       }, 100)
+//     }
+//   }
+
+//   const addproduct = () => {
+//     navigate("/admin")
+//   }
+
+//   const handleLogout = () => {
+//     logout()
+//     localStorage.clear()
+//     navigate("/login")
+//   }
+
+//   const fetchSuggestions = async (value) => {
+//     if (!value) {
+//       setSuggestions([])
+//       return
+//     }
+
+//     try {
+//       const res = await axios.get(`${process.env.REACT_APP_API}/api/searchpc?q=${value}`)
+//       const productResults = res.data.products.map((p) => ({
+//         type: "product",
+//         name: p.name,
+//         id: p._id,
+//       }))
+//       const categoryResults = res.data.categories.map((c) => ({
+//         type: "category",
+//         name: c.name,
+//       }))
+//       setSuggestions([...productResults, ...categoryResults])
+//     } catch (err) {
+//       console.error("Search error", err)
+//     }
+//   }
+
+//   const handleSearchChange = (e) => {
+//     const value = e.target.value
+//     setSearchTerm(value)
+//     fetchSuggestions(value)
+//   }
+
+//   const handleSelect = (item) => {
+//     if (item.type === "product") {
+//       navigate(`/productinner/${item.id}`)
+//     } else {
+//       navigate(`/products/${item.name}`)
+//     }
+//     setSearchTerm("")
+//     setSuggestions([])
+//     setSearchOpen(false)
+//   }
+
+//   //Close search when clicking outside
+//   useEffect(() => {
+//     const handleClickOutside = (event) => {
+//       // Only close if the click is outside both the search icon and the search input
+//       if (searchOpen) {
+//         const isClickInsideSearchIcon = event.target.closest(".search-icon")
+//         const isClickInsideSearchInput = searchInputRef.current && searchInputRef.current.contains(event.target)
+
+//         // If the click is neither inside the search icon nor inside the search input, close the search
+//         if (!isClickInsideSearchIcon && !isClickInsideSearchInput) {
+//           setSearchOpen(false)
+//         }
+//       }
+//     }
+
+//     document.addEventListener("mousedown", handleClickOutside)
+//     return () => {
+//       document.removeEventListener("mousedown", handleClickOutside)
+//     }
+//   }, [searchOpen])
+
+
+
+
+//   return (
+//     <header className="header-main">
+//       <div className="container">
+//         <div className="header-inner">
+//           {/* Logo and Title */}
+//           <div className="left">
+//             <div className="logo">
+//               <span className="logo-text">
+//                 <img src={logo || "/placeholder.svg"} alt="logo" />
+//               </span>
+//             </div>
+//             <div className="title">
+//               <h2>THE CLUB OF WHITE</h2>
+//             </div>
+//             {localStorage.getItem("email") === "miteshdobariya2206@gmail.com" && (
+//               <button className="admin-btn" onClick={addproduct}>
+//                 Admin
+//               </button>
+//             )}
+//           </div>
+
+//           {/* Icons */}
+//           <div className="right">
+//             <div  className={`icon search-icon ${searchOpen ? "active" : ""}`} onClick={toggleSearch}>
+//               <Search className="icon-item" />
+              
+//               {searchOpen && (
+//                 <div className="search-input-container open">
+//                   <input
+//                     ref={searchInputRef}
+//                     type="text"
+//                     value={searchTerm}
+//                     onChange={handleSearchChange}
+//                     placeholder="Search products or categories..."
+//                     className="search-input"
+//                   />
+//                   {suggestions.length > 0 && (
+//                     <ul className="suggestion-list">
+//                       {suggestions.map((item, index) => (
+//                         <li key={index} onClick={() => handleSelect(item)} className="suggestion-item">
+//                           {item.name} <span className="suggestion-type">({item.type})</span>
+//                         </li>
+//                       ))}
+//                     </ul>
+//                   )}
+//                 </div>
+//               )}
+//             </div>
+//             <div className="icon">
+//               <Link to="/cart">
+//                 <ShoppingCart className="icon-item" />
+//               </Link>
+//             </div>
+//             <div className="icon">
+//               <Link to="/yourorder">
+//                 <Truck className="icon-item" />
+//               </Link>
+//             </div>
+//             <div className="icon">
+//               <Link to="/wishlist">
+//                 <Heart className="icon-item" />
+//               </Link>
+//             </div>
+//             <div className="icon">
+//               {localStorage.getItem("loginnn") ? (
+//                 <Link onClick={handleLogout}>
+//                   <IoLogOut className="icon-item" />
+//                 </Link>
+//               ) : (
+//                 <Link to={"/login"}>
+//                   <User className="icon-item" />
+//                 </Link>
+//               )}
+//             </div>
+
+//             {/* Hamburger Menu for Mobile */}
+//             <div className={`hamburger ${menuOpen ? "active" : ""}`} onClick={toggleMenu}>
+//               <span></span>
+//               <span></span>
+//               <span></span>
+//             </div>
+//           </div>
+//         </div>
+
+//         {/* Mobile Menu */}
+//         <div className={`mobile-menu ${menuOpen ? "show" : ""}`}>
+//           <Link to="/yourorder" className="mobile-menu-item">
+//             <Truck className="mobile-icon" />
+//             <span>Your Orders</span>
+//           </Link>
+//           <Link to="/wishlist" className="mobile-menu-item">
+//             <Heart className="mobile-icon" />
+//             <span>Wishlist</span>
+//           </Link>
+
+//           {localStorage.getItem("loginnn") ? (
+//             <Link onClick={handleLogout} className="mobile-menu-item">
+//               <IoLogOut className="mobile-icon" />
+//               <span>Logout</span>
+//             </Link>
+//           ) : (
+//             <Link to="/login" className="mobile-menu-item">
+//               <User className="mobile-icon" />
+//               <span>Login</span>
+//             </Link>
+//           )}
+
+//           {localStorage.getItem("email") === "demo@gmail.com" ? (
+//             <button onClick={addproduct} className="mobile-menu-item mobile-admin">
+//               Admin
+//             </button>
+//           ) : null}
+//         </div>
+//       </div>
+//     </header>
+//   )
+// }
+
+
+
+
+
+
 "use client"
 
 import { Search, ShoppingCart, Truck, Heart, User } from "lucide-react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate, useLocation } from "react-router-dom"
 import { useState, useContext, useRef, useEffect } from "react"
 import logo from "./assets/Backgroungimg/logo1.png"
 import { AuthContext } from "./AuthContext"
@@ -481,13 +710,21 @@ export default function Header() {
   const [suggestions, setSuggestions] = useState([])
   const { logout } = useContext(AuthContext)
   const navigate = useNavigate()
+  const location = useLocation()
   const searchInputRef = useRef(null)
+  const searchContainerRef = useRef(null)
+  const searchIconRef = useRef(null)
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen)
   }
 
-  const toggleSearch = () => {
+  const toggleSearch = (e) => {
+    // If search is already open, don't close it when clicking the search icon
+    if (searchOpen && e && searchIconRef.current && searchIconRef.current.contains(e.target)) {
+      return
+    }
+
     setSearchOpen(!searchOpen)
     if (!searchOpen) {
       setTimeout(() => {
@@ -498,6 +735,7 @@ export default function Header() {
 
   const addproduct = () => {
     navigate("/admin")
+    setMenuOpen(false)
   }
 
   const handleLogout = () => {
@@ -546,18 +784,25 @@ export default function Header() {
     setSearchOpen(false)
   }
 
+  // Prevent search input clicks from closing the search
+  const handleSearchContainerClick = (e) => {
+    e.stopPropagation()
+  }
+
   // Close search when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      // Only close if the click is outside both the search icon and the search input
-      if (searchOpen) {
-        const isClickInsideSearchIcon = event.target.closest(".search-icon")
-        const isClickInsideSearchInput = searchInputRef.current && searchInputRef.current.contains(event.target)
+      // Only process if search is open
+      if (!searchOpen) return
 
-        // If the click is neither inside the search icon nor inside the search input, close the search
-        if (!isClickInsideSearchIcon && !isClickInsideSearchInput) {
-          setSearchOpen(false)
-        }
+      // Check if click is inside search icon or search container
+      const isClickInsideSearchIcon = searchIconRef.current && searchIconRef.current.contains(event.target)
+      const isClickInsideSearchContainer =
+        searchContainerRef.current && searchContainerRef.current.contains(event.target)
+
+      // If click is outside both, close the search
+      if (!isClickInsideSearchIcon && !isClickInsideSearchContainer) {
+        setSearchOpen(false)
       }
     }
 
@@ -566,6 +811,13 @@ export default function Header() {
       document.removeEventListener("mousedown", handleClickOutside)
     }
   }, [searchOpen])
+
+  // Close mobile menu when location changes
+  useEffect(() => {
+    if (menuOpen) {
+      setMenuOpen(false)
+    }
+  }, [location.pathname])
 
   return (
     <header className="header-main">
@@ -590,10 +842,19 @@ export default function Header() {
 
           {/* Icons */}
           <div className="right">
-            <div className={`icon search-icon ${searchOpen ? "active" : ""}`} onClick={toggleSearch}>
+            <div
+              ref={searchIconRef}
+              className={`icon search-icon ${searchOpen ? "active" : ""}`}
+              onClick={toggleSearch}
+            >
               <Search className="icon-item" />
+
               {searchOpen && (
-                <div className="search-input-container open">
+                <div
+                  ref={searchContainerRef}
+                  className="search-input-container open"
+                  onClick={handleSearchContainerClick}
+                >
                   <input
                     ref={searchInputRef}
                     type="text"
@@ -601,11 +862,19 @@ export default function Header() {
                     onChange={handleSearchChange}
                     placeholder="Search products or categories..."
                     className="search-input"
+                    onClick={(e) => e.stopPropagation()}
                   />
                   {suggestions.length > 0 && (
                     <ul className="suggestion-list">
                       {suggestions.map((item, index) => (
-                        <li key={index} onClick={() => handleSelect(item)} className="suggestion-item">
+                        <li
+                          key={index}
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            handleSelect(item)
+                          }}
+                          className="suggestion-item"
+                        >
                           {item.name} <span className="suggestion-type">({item.type})</span>
                         </li>
                       ))}
@@ -652,32 +921,38 @@ export default function Header() {
 
         {/* Mobile Menu */}
         <div className={`mobile-menu ${menuOpen ? "show" : ""}`}>
-          <Link to="/yourorder" className="mobile-menu-item">
+          <Link to="/yourorder" className="mobile-menu-item" onClick={() => setMenuOpen(false)}>
             <Truck className="mobile-icon" />
             <span>Your Orders</span>
           </Link>
-          <Link to="/wishlist" className="mobile-menu-item">
+          <Link to="/wishlist" className="mobile-menu-item" onClick={() => setMenuOpen(false)}>
             <Heart className="mobile-icon" />
             <span>Wishlist</span>
           </Link>
 
           {localStorage.getItem("loginnn") ? (
-            <Link onClick={handleLogout} className="mobile-menu-item">
+            <Link
+              onClick={() => {
+                handleLogout()
+                setMenuOpen(false)
+              }}
+              className="mobile-menu-item"
+            >
               <IoLogOut className="mobile-icon" />
               <span>Logout</span>
             </Link>
           ) : (
-            <Link to="/login" className="mobile-menu-item">
+            <Link to="/login" className="mobile-menu-item" onClick={() => setMenuOpen(false)}>
               <User className="mobile-icon" />
               <span>Login</span>
             </Link>
           )}
 
-          {localStorage.getItem("email") === "demo@gmail.com" ? (
+          {localStorage.getItem("email") === "miteshdobariya2206@gmail.com" && (
             <button onClick={addproduct} className="mobile-menu-item mobile-admin">
               Admin
             </button>
-          ) : null}
+          )}
         </div>
       </div>
     </header>
